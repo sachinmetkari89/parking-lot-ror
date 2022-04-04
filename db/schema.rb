@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20220403182635) do
+ActiveRecord::Schema.define(version: 20220404175319) do
 
   create_table "parking_lots", force: :cascade do |t|
     t.string "slot_number", null: false
@@ -18,7 +18,6 @@ ActiveRecord::Schema.define(version: 20220403182635) do
     t.integer "distance_from_entry_point"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["slot_number", "status"], name: "index_parking_lots_on_slot_number_and_status", unique: true
     t.index ["slot_number"], name: "index_parking_lots_on_slot_number", unique: true
   end
 
@@ -29,7 +28,6 @@ ActiveRecord::Schema.define(version: 20220403182635) do
     t.string "car_color", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["car_reg_number", "car_color"], name: "index_tickets_on_car_reg_number_and_car_color", unique: true
     t.index ["number"], name: "index_tickets_on_number", unique: true
   end
 
