@@ -30,4 +30,20 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  parking_lots:
+    create:
+      success: Parking lot was successfully created.
+    update:
+      success: Parking lot was successfully updated.
+    destroy:
+      success: Parking lot was successfully destroyed.
+      error: Parking lot could not be deleted.
+  tickets:
+    create:
+      success: Ticket was successfully created.
+    update:
+      success: Ticket was successfully updated.
+    destroy:
+      success: Ticket was successfully destroyed.
+      error: Ticket could not be deleted.
+
