@@ -4,7 +4,6 @@ class ParkingLot < ApplicationRecord
   # Validations
   validates :slot_number, presence: true, uniqueness: true
   validates :status, presence: true
-  validates :slot_number, uniqueness: { scope: :status }
 
   # scopes
   scope :allocated_parking_slots, -> { where(status: 'allocated') }
