@@ -47,6 +47,8 @@ group :development, :test do
 
   # database_cleaner allows us to manage our testing database with precision
   gem 'database_cleaner'
+
+  gem 'active_model_serializers', '~> 0.10.0'
 end
 
 group :development do

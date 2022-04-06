@@ -4,12 +4,12 @@ class ParkingLotsController < ApplicationController
   # GET /parking_lots
   def index
     @parking_lots = ParkingLot.all
-    render json: @parking_lots, status: :ok
+    render json: @parking_lots, each_serializer: ParkingLotSerializer, status: :ok
   end
 
   # GET /parking_lots/1
   def show
-    render json: @parking_lot, status: :ok
+    render json: @parking_lot, serializer: ParkingLotSerializer, status: :ok
   end
 
   # POST /parking_lots
@@ -17,7 +17,7 @@ class ParkingLotsController < ApplicationController
     parking_lot = ParkingLot.new(parking_lot_params)
 
     if parking_lot.save
-      render json: parking_lot, meta: { notice: t('parking_lots.create.success') }, status: :created
+      render json: parking_lot, serializer: ParkingLotSerializer, meta: { notice: t('parking_lots.create.success') }, status: :created
     else
       render json: { errors: parking_lot.errors }, status: :unprocessable_entity
     end
@@ -26,7 +26,7 @@ class ParkingLotsController < ApplicationController
   # PATCH/PUT /parking_lots/1
   def update
     if @parking_lot.update(parking_lot_params)
-      render json: @parking_lot, meta: { notice: t('parking_lots.update.success') }, status: :ok
+      render json: @parking_lot, serializer: ParkingLotSerializer, meta: { notice: t('parking_lots.update.success') }, status: :ok
     else
       render json: { errors: @parking_lot.errors }, status: :unprocessable_entity
     end
