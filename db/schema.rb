@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20220404175319) do
+ActiveRecord::Schema.define(version: 20220406152641) do
 
   create_table "parking_lots", force: :cascade do |t|
     t.string "slot_number", null: false
@@ -23,12 +23,10 @@ ActiveRecord::Schema.define(version: 20220404175319) do
 
   create_table "tickets", force: :cascade do |t|
     t.integer "parking_lot_id", null: false
-    t.string "number", null: false
     t.string "car_reg_number", null: false
     t.string "car_color", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["number"], name: "index_tickets_on_number", unique: true
   end
 
 end

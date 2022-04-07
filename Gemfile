@@ -36,8 +36,19 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   # Adds support for Capybara system testing and selenium driver
-  gem 'capybara', '>= 2.15'
-  gem 'selenium-webdriver'
+  # "rspec-rails" is the testing framework.
+  gem 'rspec-rails'
+
+  # 'factory_bot_rails' replaces Rails fixtures for generating data to use in the tests.
+  gem 'factory_bot_rails'
+
+  # capybara provides helper methods that make integration testing easier
+  gem 'capybara'
+
+  # database_cleaner allows us to manage our testing database with precision
+  gem 'database_cleaner'
+
+  gem 'active_model_serializers', '~> 0.10.0'
 end
 
 group :development do
