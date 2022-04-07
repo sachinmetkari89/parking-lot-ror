@@ -1,17 +1,7 @@
 FactoryBot.define do
-  # factory :parking_lot do
-  #   trait :allocated do
-  #     status 'allocated'
-  #   end
-
-  #   trait :unallocated do
-  #     status 'unallocated'
-  #   end
-  # end
-
-  # factory :parking_lot do
-  #   slot_number 'A1'
-  #   status 'unallocated'
-  #   distance_from_entry_point 10
-  # end
+  factory :parking_lot do
+    sequence(:slot_number) { |n| "A#{n}" }
+    status { 'unallocated' }
+    sequence(:distance_from_entry_point) { |n| (n * rand(1..10)) }
+  end
 end
