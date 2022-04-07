@@ -8,6 +8,7 @@ class Ticket < ApplicationRecord
   # Validations
   validates :car_reg_number, presence: true, uniqueness: true
   validates :car_color, inclusion: { in: CAR_COLORS }, presence: true
+  validate :can_not_be_updated_after_create
 
   # scopes
   scope :with_car_color, ->(color) { where(car_color: color) }
@@ -31,15 +32,21 @@ class Ticket < ApplicationRecord
     if nearest_parking_slot_from_entry_point = ParkingLot.unallocated_parking_slots.order(distance_from_entry_point: :asc).first.presence
       self.parking_lot_id = nearest_parking_slot_from_entry_point.id
     else
-      errors.add(:base, "Parking lots not exist")
+      errors.add(:base, "Parking slots are not available")
     end
   end
 
   def free_parking_slot
-    parking_lot.update(status: ParkingLot::UNALLOCATED)
+    parking_lot.update_columns(status: ParkingLot::UNALLOCATED)
   end
 
   def update_parking_lot_status
-    parking_lot.update(status: ParkingLot::ALLOCATED)
+    parking_lot.update!(status: ParkingLot::ALLOCATED)
+  end
+
+  def can_not_be_updated_after_create
+    if persisted? && changes_to_save.present?
+      errors.add(:base, "Can not be updated")
+    end
   end
 end

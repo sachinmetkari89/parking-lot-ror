@@ -1,8 +1,8 @@
 FactoryBot.define do
-  # factory :ticket do
-  #   parking_lot_id 1
-  #   number '1'
-  #   car_reg_number '1234'
-  #   car_color 'white'
-  # end
+  factory :ticket do
+    parking_lot { create :parking_lot }
+
+    sequence(:car_reg_number) { |n| "C#{n}" }
+    sequence(:car_color) { Ticket::CAR_COLORS.sample }
+  end
 end
